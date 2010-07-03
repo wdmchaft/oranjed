@@ -11,7 +11,6 @@
 		7126C6EA11DE382700224AC3 /* OranjedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7126C6E911DE382700224AC3 /* OranjedController.m */; };
 		7126C6ED11DE38CD00224AC3 /* icon-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 7126C6EB11DE38CD00224AC3 /* icon-alt.png */; };
 		7126C6EE11DE38CD00224AC3 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7126C6EC11DE38CD00224AC3 /* icon.png */; };
-		71841BBB11DEB89000F6D690 /* URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 71841BBA11DEB89000F6D690 /* URLEncode.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -29,8 +28,7 @@
 		7126C6E911DE382700224AC3 /* OranjedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OranjedController.m; sourceTree = "<group>"; };
 		7126C6EB11DE38CD00224AC3 /* icon-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-alt.png"; path = "../../Downloads/famfamfam_silk_icons_v013/icons/icon-alt.png"; sourceTree = SOURCE_ROOT; };
 		7126C6EC11DE38CD00224AC3 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../Downloads/famfamfam_silk_icons_v013/icons/icon.png; sourceTree = SOURCE_ROOT; };
-		71841BB911DEB89000F6D690 /* URLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLEncode.h; sourceTree = "<group>"; };
-		71841BBA11DEB89000F6D690 /* URLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLEncode.m; sourceTree = "<group>"; };
+		71841D7F11DED40100F6D690 /* oranjed_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oranjed_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* oranjed-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "oranjed-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* oranjed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oranjed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -52,8 +50,6 @@
 			children = (
 				7126C6E811DE382700224AC3 /* OranjedController.h */,
 				7126C6E911DE382700224AC3 /* OranjedController.m */,
-				71841BB911DEB89000F6D690 /* URLEncode.h */,
-				71841BBA11DEB89000F6D690 /* URLEncode.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -109,6 +105,7 @@
 			children = (
 				7126C76611DE43DE00224AC3 /* icons */,
 				8D1107310486CEB800E47090 /* oranjed-Info.plist */,
+				71841D7F11DED40100F6D690 /* oranjed_Prefix.pch */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 			);
@@ -195,7 +192,6 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				7126C6EA11DE382700224AC3 /* OranjedController.m in Sources */,
-				71841BBB11DEB89000F6D690 /* URLEncode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,7 +227,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = hello_toolbar_Prefix.pch;
+				GCC_PREFIX_HEADER = oranjed_Prefix.pch;
 				INFOPLIST_FILE = "oranjed-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = oranjed;
@@ -245,7 +241,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = hello_toolbar_Prefix.pch;
+				GCC_PREFIX_HEADER = oranjed_Prefix.pch;
 				INFOPLIST_FILE = "oranjed-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = oranjed;
@@ -258,10 +254,14 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_PREFIX_HEADER = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				SDKROOT = macosx10.6;
 			};
 			name = Debug;
@@ -271,9 +271,13 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_PREFIX_HEADER = "";
 				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				SDKROOT = macosx10.6;
 			};
 			name = Release;
