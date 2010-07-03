@@ -10,6 +10,9 @@
 
 
 @implementation OranjedController
+NSMutableData *receivedData;
+NSString *thedata;
+
 
 -(void) awakeFromNib
 {
@@ -25,6 +28,11 @@
 	
 	[oranjedItem setMenu:oranjedMenu];
 	[oranjedItem setHighlightMode:YES];
+	
+	if ([self login] == 0)
+	{
+		[self get_unread];
+	}
 
 }
 
@@ -35,8 +43,74 @@
 	[super dealloc];
 }
 
--(IBAction)check:(id)sender
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response { 
+	NSLog(@"Response recieved!"); 
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection { 
+	NSLog(@"Connection closed. Done!"); 
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error { 
+	NSLog(@"Error recieved: %@", [error description]); 
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data 
+{ 
+	NSString *sdata = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+	NSLog(@"The data is: %@",sdata); 
+	thedata = sdata;
+
+}
+	
+-(int)login
 {
 	NSLog(@"Checking...");
+	
+	NSString *Username = @"o3o";
+	NSString *Password = @"221088jbw";
+	
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.reddit.com/api/login"]];
+	
+	[request setHTTPMethod:@"POST"];
+	
+	NSString *request_body = [NSString 
+							  stringWithFormat:@"user=%@&passwd=%@",
+							  [Username        stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+							  [Password        stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+							  ];
+							  
+
+	[request setHTTPBody:[request_body dataUsingEncoding:NSUTF8StringEncoding]];
+	
+	NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+	
+	if(theConnection){
+		NSLog(@"Response: %@", theConnection);
+	}
+	else{
+		
+	}
+	return 0;
+}
+-(void) get_unread
+{
+	NSLog(@"Logged in. ");
+	NSString *Unread = @"http://www.reddit.com/message/unread.json";
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:Unread]];
+	NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+	if(theConnection){
+		NSLog(@"Response: %@", theConnection);
+	}else{}
+}	
+
+
+-(IBAction)check:(id)sender
+{
+	
+	
+	NSLog(@"h\n%@", thedata);
+
+
 }
 @end

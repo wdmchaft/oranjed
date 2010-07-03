@@ -19,5 +19,6 @@
 }
 
 -(IBAction)check:(id)sender;
-
+-(int)login;
+-(void)get_unread;
 @end
