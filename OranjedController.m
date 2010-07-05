@@ -67,8 +67,8 @@ NSString *thedata;
 {
 	NSLog(@"Checking...");
 	
-	NSString *Username = @"o3o";
-	NSString *Password = @"221088jbw";
+	NSString *Username = @"username";
+	NSString *Password = @"password";
 	
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.reddit.com/api/login"]];
 	
