@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		7126C6EA11DE382700224AC3 /* OranjedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7126C6E911DE382700224AC3 /* OranjedController.m */; };
-		7126C6ED11DE38CD00224AC3 /* icon-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 7126C6EB11DE38CD00224AC3 /* icon-alt.png */; };
-		7126C6EE11DE38CD00224AC3 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7126C6EC11DE38CD00224AC3 /* icon.png */; };
+		7183A84E11E2497C00F800C0 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7183A84D11E2497C00F800C0 /* AppController.m */; };
+		7183A92311E2622200F800C0 /* icon-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 7183A92111E2622200F800C0 /* icon-alt.png */; };
+		7183A92411E2622200F800C0 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7183A92211E2622200F800C0 /* icon.png */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -21,14 +21,14 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		256AC3F00F4B6AF500CF3369 /* oranjed_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oranjed_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		7126C6E811DE382700224AC3 /* OranjedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OranjedController.h; sourceTree = "<group>"; };
-		7126C6E911DE382700224AC3 /* OranjedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OranjedController.m; sourceTree = "<group>"; };
-		7126C6EB11DE38CD00224AC3 /* icon-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-alt.png"; path = "../../Downloads/famfamfam_silk_icons_v013/icons/icon-alt.png"; sourceTree = SOURCE_ROOT; };
-		7126C6EC11DE38CD00224AC3 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../Downloads/famfamfam_silk_icons_v013/icons/icon.png; sourceTree = SOURCE_ROOT; };
-		71841D7F11DED40100F6D690 /* oranjed_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oranjed_Prefix.pch; sourceTree = "<group>"; };
+		7183A84C11E2497C00F800C0 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		7183A84D11E2497C00F800C0 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		7183A92111E2622200F800C0 /* icon-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-alt.png"; sourceTree = "<group>"; };
+		7183A92211E2622200F800C0 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* oranjed-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "oranjed-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* oranjed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oranjed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -48,8 +48,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				7126C6E811DE382700224AC3 /* OranjedController.h */,
-				7126C6E911DE382700224AC3 /* OranjedController.m */,
+				7183A84C11E2497C00F800C0 /* AppController.h */,
+				7183A84D11E2497C00F800C0 /* AppController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -80,21 +80,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA /* hello-toolbar */ = {
+		29B97314FDCFA39411CA2CEA /* oranjed */ = {
 			isa = PBXGroup;
 			children = (
+				7183A92111E2622200F800C0 /* icon-alt.png */,
+				7183A92211E2622200F800C0 /* icon.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
-			name = "hello-toolbar";
+			name = oranjed;
 			sourceTree = "<group>";
 		};
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				256AC3F00F4B6AF500CF3369 /* oranjed_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -103,9 +106,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7126C76611DE43DE00224AC3 /* icons */,
 				8D1107310486CEB800E47090 /* oranjed-Info.plist */,
-				71841D7F11DED40100F6D690 /* oranjed_Prefix.pch */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 			);
@@ -119,15 +120,6 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		7126C76611DE43DE00224AC3 /* icons */ = {
-			isa = PBXGroup;
-			children = (
-				7126C6EB11DE38CD00224AC3 /* icon-alt.png */,
-				7126C6EC11DE38CD00224AC3 /* icon.png */,
-			);
-			name = icons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,7 +139,7 @@
 			);
 			name = oranjed;
 			productInstallPath = "$(HOME)/Applications";
-			productName = "hello-toolbar";
+			productName = oranjed;
 			productReference = 8D1107320486CEB800E47090 /* oranjed.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -156,13 +148,10 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			attributes = {
-				ORGANIZATIONNAME = JBW;
-			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "oranjed" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
-			mainGroup = 29B97314FDCFA39411CA2CEA /* hello-toolbar */;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* oranjed */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -178,8 +167,8 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				7126C6ED11DE38CD00224AC3 /* icon-alt.png in Resources */,
-				7126C6EE11DE38CD00224AC3 /* icon.png in Resources */,
+				7183A92311E2622200F800C0 /* icon-alt.png in Resources */,
+				7183A92411E2622200F800C0 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,7 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				7126C6EA11DE382700224AC3 /* OranjedController.m in Sources */,
+				7183A84E11E2497C00F800C0 /* AppController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,14 +243,10 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_PREFIX_HEADER = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				SDKROOT = macosx10.6;
 			};
 			name = Debug;
@@ -271,13 +256,9 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_PREFIX_HEADER = "";
 				PREBINDING = NO;
-				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				SDKROOT = macosx10.6;
 			};
 			name = Release;

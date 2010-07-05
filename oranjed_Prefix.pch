@@ -1,7 +1,7 @@
 //
-// Prefix header for all source files of the 'oranjed-toolbar' target in the 'oranjed-toolbar' project
+// Prefix header for all source files of the 'oranjed' target in the 'oranjed' project
 //
 
-//#ifdef __OBJC__
-//    #import <Cocoa/Cocoa.h>
-//#endif
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
