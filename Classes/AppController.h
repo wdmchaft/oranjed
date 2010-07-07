@@ -16,10 +16,14 @@
 	IBOutlet NSMenu      *statusMenu;
 	IBOutlet NSTextField *usernameTextField;
 	IBOutlet NSTextField *passwordTextField;
+	IBOutlet NSMenuItem  *menuItemCheck;
+	IBOutlet NSMenuItem  *menuItemLogin;
+	IBOutlet NSWindow    *loginWindow;
 }
 
 - (IBAction) login: (id) sender;
 - (IBAction) check: (id) sender;
-- (int) connectWithUsername:(NSString *)username password:(NSString *)password;
+- (IBAction) loginWindow: (id) sender;
+- (BOOL) connectWithUsername:(NSString *)username password:(NSString *)password;
 - (void)parse;
 @end

@@ -11,7 +11,7 @@
 
 @implementation UserData
 
-@synthesize username, password, messageTitle, messageBody, subreddit, kind, link;
+@synthesize username, password, messageTitle, messageBody, subreddit, kind, link, logged_in;
 
 -(id) init {
     if ( self = [super init] ) {
@@ -22,6 +22,8 @@
 		subreddit    = [[NSString alloc]init];
 		kind         = [[NSString alloc]init];
 		link         = [[NSString alloc]init];
+		logged_in    = NO;
+
 
     }
     return self;

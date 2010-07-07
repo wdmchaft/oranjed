@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		710465D411E4D15900A34793 /* icon-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 710465D211E4D15900A34793 /* icon-alt.png */; };
+		710465D511E4D15900A34793 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 710465D311E4D15900A34793 /* icon.png */; };
+		710465D811E4D17000A34793 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 710465D611E4D17000A34793 /* MainMenu.xib */; };
+		710465DB11E4D17900A34793 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 710465D911E4D17900A34793 /* InfoPlist.strings */; };
 		71C6B97C11E4CA690062974F /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C6B96F11E4CA690062974F /* NSObject+SBJSON.m */; };
 		71C6B97D11E4CA690062974F /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C6B97111E4CA690062974F /* NSString+SBJSON.m */; };
 		71C6B97E11E4CA690062974F /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C6B97311E4CA690062974F /* SBJSON.m */; };
@@ -24,6 +28,10 @@
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		710465D211E4D15900A34793 /* icon-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-alt.png"; sourceTree = "<group>"; };
+		710465D311E4D15900A34793 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		710465D711E4D17000A34793 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		710465DA11E4D17900A34793 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		71C6B96A11E4CA690062974F /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = Classes/AppController.h; sourceTree = "<group>"; };
 		71C6B96B11E4CA690062974F /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserData.h; path = Classes/UserData.h; sourceTree = "<group>"; };
 		71C6B96D11E4CA690062974F /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
@@ -108,6 +116,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				710465D911E4D17900A34793 /* InfoPlist.strings */,
+				710465D611E4D17000A34793 /* MainMenu.xib */,
+				710465D111E4D15900A34793 /* icons */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -119,6 +130,15 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		710465D111E4D15900A34793 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				710465D211E4D15900A34793 /* icon-alt.png */,
+				710465D311E4D15900A34793 /* icon.png */,
+			);
+			path = icons;
 			sourceTree = "<group>";
 		};
 		71C6B96511E4CA0B0062974F /* Classes */ = {
@@ -197,6 +217,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				710465D411E4D15900A34793 /* icon-alt.png in Resources */,
+				710465D511E4D15900A34793 /* icon.png in Resources */,
+				710465D811E4D17000A34793 /* MainMenu.xib in Resources */,
+				710465DB11E4D17900A34793 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +244,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		710465D611E4D17000A34793 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				710465D711E4D17000A34793 /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		710465D911E4D17900A34793 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				710465DA11E4D17900A34793 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C01FCF4B08A954540054247B /* Debug */ = {
