@@ -14,11 +14,13 @@
 	NSImage			     *statusNewImage;
 	NSStatusItem         *statusItem;
 	IBOutlet NSMenu      *statusMenu;
-	IBOutlet NSTextField *usernameTextField;
-	IBOutlet NSTextField *passwordTextField;
 	IBOutlet NSMenuItem  *menuItemCheck;
 	IBOutlet NSMenuItem  *menuItemLogin;
-	IBOutlet NSWindow    *loginWindow;
+	
+	IBOutlet NSPanel     *loginPanel;
+	IBOutlet NSTextField *panelUsernameField;
+	IBOutlet NSTextField *panelPasswordField;
+	
 }
 
 - (IBAction) login: (id) sender;
@@ -26,4 +28,5 @@
 - (IBAction) loginWindow: (id) sender;
 - (BOOL) connectWithUsername:(NSString *)username password:(NSString *)password;
 - (void)parse;
+- (void) check_logged_in;
 @end

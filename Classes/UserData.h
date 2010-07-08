@@ -17,7 +17,7 @@
 	NSString *subreddit;
 	NSString *kind;
 	NSString *link;
-
+	NSString *messageData;
 	BOOL logged_in;
 
 }
@@ -30,6 +30,8 @@
 @property (nonatomic, retain) NSString *subreddit;
 @property (nonatomic, retain) NSString *kind;
 @property (nonatomic, retain) NSString *link;
+@property (nonatomic, retain) NSString *messageData;
+
 @property (nonatomic) BOOL logged_in;
 
 @end
