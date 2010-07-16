@@ -3,7 +3,7 @@
 //  oranjed
 //
 //  Created by Jason Watson on 05/07/2010.
-//  Copyright 2010 University of Lancaster. All rights reserved.
+//  
 //
 
 #import "AppController.h"
@@ -56,9 +56,12 @@ UserData *User;
 	
 	[panelUsernameField setStringValue:@"username"];
 	[panelPasswordField setStringValue:@"password"];
+	[menuItemMessages setTitle:@"0 Messages"];
+	[menuItemMessages setHidden:YES];
 
 
 }
+
 
 - (IBAction) loginWindow: (id) sender {
 	
@@ -136,6 +139,7 @@ UserData *User;
 	if ([[[[loginResponse objectAtIndex:10] objectAtIndex:3] objectAtIndex:0] isEqualToString:@"/" ]) {
 		NSLog(@"you're logged in.");
 		User.logged_in = YES;
+		[menuItemMessages setHidden:NO];
 		[self parse];
 	} else if ([[[[loginResponse objectAtIndex:10] objectAtIndex:3] objectAtIndex:0] isEqualToString:@".error.WRONG_PASSWORD.field-passwd"]) {
 		NSLog(@"youre password is incorrect.");
