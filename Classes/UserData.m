@@ -3,7 +3,7 @@
 //  oranjed
 //
 //  Created by Jason Watson on 07/07/2010.
-//  Copyright 2010 University of Lancaster. All rights reserved.
+//  
 //
 
 #import "UserData.h"
@@ -13,7 +13,7 @@
 
 @synthesize username, password, messageTitle, messageBody, subreddit, kind, link, messageData, logged_in;
 
--(id) init {
+- (id) init {
     if ( self = [super init] ) {
 		username     = [[NSString alloc]init];
 		password     = [[NSString alloc]init];
@@ -31,8 +31,7 @@
     return self;
 }
 
-- (void) dealloc
-{
+- (void) dealloc {
 	[username     release];
 	[password     release];
 	[messageTitle release];
@@ -43,4 +42,5 @@
 	[messageData  release];
 	[super        dealloc];
 }
+
 @end

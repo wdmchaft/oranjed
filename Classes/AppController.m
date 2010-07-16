@@ -15,33 +15,27 @@
 
 UserData *User;
 
--(id) init {
+- (id) init {
     if ( self = [super init] ) {
-
 		menuItemCheck = [[NSMenuItem alloc]init];
 		menuItemLogin = [[NSMenuItem alloc]init];
 		loginPanel = [[NSPanel alloc]init];
 		panelUsernameField = [[NSTextField alloc]init];
 		panelPasswordField = [[NSTextField alloc]init];
-		
 	}
     return self;
 }
 
-- (void) dealloc
-{
+- (void) dealloc {
 	[menuItemCheck      release];
 	[menuItemLogin      release];
 	[loginPanel         release];
 	[panelPasswordField release];
 	[panelUsernameField release];
 	[super dealloc];
-
 }
 
-
 - (void) awakeFromNib {
-	
 	statusItem       = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 	NSBundle *bundle = [NSBundle mainBundle];
 	
@@ -53,19 +47,19 @@ UserData *User;
 	[statusItem setMenu:statusMenu];
 	[statusItem setHighlightMode:YES];
 
-	
 	[panelUsernameField setStringValue:@"username"];
 	[panelPasswordField setStringValue:@"password"];
-	[menuItemMessages setTitle:@"0 Messages"];
-	[menuItemMessages setHidden:YES];
-
+	[menuItemMessages   setTitle:@"0 Messages"];
+	[menuItemMessages   setHidden:YES];
 
 }
 
-
-- (IBAction) loginWindow: (id) sender {
-	
+- (IBAction) loginPanel: (id) sender {
 	[loginPanel orderFront:sender];
+}
+
+- (IBAction) messagesPanel: (id) sender {
+	[messagesPanel orderFront:sender];
 }
 
 - (BOOL) validateMenuItem:(NSMenuItem *)menuItem {
@@ -129,8 +123,7 @@ UserData *User;
 	[self check_logged_in];
 }
 
-- (void) check_logged_in
-{
+- (void) check_logged_in {
 	SBJSON       *parser       = [[SBJSON alloc] init];
 	NSLog(@"here");
 	NSDictionary *loginResponseDict = [parser objectWithString:User.messageData error:nil];
@@ -152,6 +145,7 @@ UserData *User;
 	}
 
 }
+
 - (void) parse {
 	
 	SBJSON       *parser       = [[SBJSON alloc] init];
