@@ -12,6 +12,8 @@
 		710465D811E4D17000A34793 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 710465D611E4D17000A34793 /* MainMenu.xib */; };
 		710465DB11E4D17900A34793 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 710465D911E4D17900A34793 /* InfoPlist.strings */; };
 		7145B73211F0914D00BF05CB /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 7145B73111F0914D00BF05CB /* Message.m */; };
+		71597BA611F1B0C0005D64C0 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71597BA511F1B0C0005D64C0 /* BWToolkitFramework.framework */; };
+		71597BD911F1B11F005D64C0 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71597BA511F1B0C0005D64C0 /* BWToolkitFramework.framework */; };
 		71C6B97C11E4CA690062974F /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C6B96F11E4CA690062974F /* NSObject+SBJSON.m */; };
 		71C6B97D11E4CA690062974F /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C6B97111E4CA690062974F /* NSString+SBJSON.m */; };
 		71C6B97E11E4CA690062974F /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C6B97311E4CA690062974F /* SBJSON.m */; };
@@ -24,6 +26,19 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		71597BD811F1B119005D64C0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				71597BD911F1B11F005D64C0 /* BWToolkitFramework.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -35,6 +50,7 @@
 		710465DA11E4D17900A34793 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7145B73011F0914C00BF05CB /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		7145B73111F0914D00BF05CB /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		71597BA511F1B0C0005D64C0 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = /Users/jbw/Downloads/BWToolkit/BWToolkitFramework.framework; sourceTree = "<absolute>"; };
 		71C6B96A11E4CA690062974F /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = Classes/AppController.h; sourceTree = "<group>"; };
 		71C6B96B11E4CA690062974F /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserData.h; path = Classes/UserData.h; sourceTree = "<group>"; };
 		71C6B96D11E4CA690062974F /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
@@ -63,6 +79,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				71597BA611F1B0C0005D64C0 /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +89,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71597BA511F1B0C0005D64C0 /* BWToolkitFramework.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -189,6 +207,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				71597BD811F1B119005D64C0 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -276,6 +295,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Downloads/BWToolkit\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -293,6 +316,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Downloads/BWToolkit\"",
+				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = oranjed_Prefix.pch;

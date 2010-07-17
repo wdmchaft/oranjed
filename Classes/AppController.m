@@ -235,7 +235,7 @@ UserData *User;
    
     if (messageRow > ([emails count] - 1)) return;
     
-    Message *message         = [emails objectAtIndex: emailRow];
+    Message *message         = [emails objectAtIndex: messageRow];
     NSString *messageBody   = [[message properties] objectForKey: @"body"];
     [previewPane setString: messageBody];    
 }
