@@ -14,7 +14,7 @@
 @implementation AppController
 
 UserData *User;
-
+NSMutableArray *check_new;
 - (id) init {
     if ( self = [super init] ) {
 
@@ -52,7 +52,7 @@ UserData *User;
 
 	[panelUsernameField setStringValue:@"username"];
 	[panelPasswordField setStringValue:@"password"];
-	[menuItemMessages   setTitle:@"0 Messages"];
+	[menuItemMessages   setTitle:@"0 Unread"];
 	[menuItemMessages   setHidden:YES];
 	[previewPane setEditable: NO];
 	
@@ -166,10 +166,20 @@ UserData *User;
 
 	NSArray      *messageData  = [[userData objectForKey:@"data"] objectForKey:@"children"];
 	NSArray      *empty  = [[userData objectForKey:@"data"] objectForKey:@"after"];
-	NSLog(@"%@", json_string);
+
+	if ([messageData isEqualToArray:check_new]) {
+		NSLog(@"the same");
+		return;
+	}else {
+		NSLog(@"different");
+	}
+	
+	[check_new release];
+	check_new = [[NSMutableArray alloc]initWithArray:messageData copyItems:YES];
+	
 	if (empty) {
 		for (NSDictionary *message in messageData) {
-
+		
 			if ([[message objectForKey:@"kind"] isEqualToString:@"t1"]) {
 
 				if ([[message objectForKey:@"data"] objectForKey:@"new"]) {
@@ -181,6 +191,7 @@ UserData *User;
 					NSLog(@" Subreddit: %@", [[message objectForKey:@"data"] objectForKey:@"subreddit"]);
 					User.subreddit = [[message objectForKey:@"data"] objectForKey:@"subreddit"];
 					NSLog(@"***************************************************\n");
+					
 					[self addEmail:User];
 				} else { NSLog(@"You have no new comments."); }
 			} 
@@ -213,7 +224,10 @@ UserData *User;
 }
 
 - (int) numberOfRowsInTableView:(NSTableView *)tableView {
-	return [emails count];
+	int count = [emails count];
+
+	[menuItemMessages   setTitle:[NSString stringWithFormat:@"%i Unread", count]];
+	return count;
 }
 
 - (id) tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)column row:(int)row {
@@ -235,8 +249,8 @@ UserData *User;
    
     if (messageRow > ([emails count] - 1)) return;
     
-    Message *message         = [emails objectAtIndex: messageRow];
-    NSString *messageBody   = [[message properties] objectForKey: @"body"];
+    Message  *message         = [emails objectAtIndex: messageRow];
+    NSString *messageBody     = [[message properties] objectForKey: @"body"];
     [previewPane setString: messageBody];    
 }
 
