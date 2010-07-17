@@ -57,10 +57,6 @@ UserData *User;
 	[previewPane setEditable: NO];
 	
 	User = [UserData new];
-	
-
-	
-	
 
 }
 
@@ -171,16 +167,12 @@ UserData *User;
 	NSArray      *messageData  = [[userData objectForKey:@"data"] objectForKey:@"children"];
 	NSArray      *empty  = [[userData objectForKey:@"data"] objectForKey:@"after"];
 	NSLog(@"%@", json_string);
-	if (empty) 
-	{
-		for (NSDictionary *message in messageData)
-		{
+	if (empty) {
+		for (NSDictionary *message in messageData) {
 
-			if ([[message objectForKey:@"kind"] isEqualToString:@"t1"]) 
-			{
+			if ([[message objectForKey:@"kind"] isEqualToString:@"t1"]) {
 
-				if ([[message objectForKey:@"data"] objectForKey:@"new"])
-				{
+				if ([[message objectForKey:@"data"] objectForKey:@"new"]) {
 					NSLog(@"\n*************** Comment in a reddit ***************");
 					NSLog(@"      From: %@", [[message objectForKey:@"data"] objectForKey:@"author"]);
 					User.author = [[message objectForKey:@"data"] objectForKey:@"author"];
@@ -190,14 +182,10 @@ UserData *User;
 					User.subreddit = [[message objectForKey:@"data"] objectForKey:@"subreddit"];
 					NSLog(@"***************************************************\n");
 					[self addEmail:User];
-				} else { 
-					NSLog(@"You have no new comments."); 
-				}
+				} else { NSLog(@"You have no new comments."); }
 			} 
-			if ([[message objectForKey:@"kind"] isEqualToString:@"t4"]) 
-			{
-				 if ([[message objectForKey:@"data"] objectForKey:@"new"]) 
-				 {
+			if ([[message objectForKey:@"kind"] isEqualToString:@"t4"]) {
+				 if ([[message objectForKey:@"data"] objectForKey:@"new"]) {
 					NSLog(@"\n************* Message in your inbox! **************");
 					NSLog(@"*    From:%@", [[message objectForKey:@"data"] objectForKey:@"author"]);
 					 User.author = [[message objectForKey:@"data"] objectForKey:@"author"];
@@ -209,18 +197,11 @@ UserData *User;
 					 [self addEmail:User];
 					NSLog(@"***************************************************\n");
 				 } 
-				 else { 
-					 NSLog(@"You have no new messages."); 
-				 }
+				 else { NSLog(@"You have no new messages."); }
 			}
 		}
 	}
-	else {
-		//NSLog(@"Empty.");
-		//NSLog(@"%@", User.messageBody);
-		[self addEmail:User];
-
-	}
+	else { NSLog(@"Empty.");}
 
 }	
 
@@ -240,6 +221,25 @@ UserData *User;
 	Message *theMessage = [emails objectAtIndex:row];
 	return [[theMessage properties]objectForKey: key];
 }
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification
+{
+	[previewPane setEditable: NO];
+
+    int messageRow = [messagesTable selectedRow];
+    if (messageRow < 0)
+    {
+        [previewPane setString: @""];
+        return;
+    }
+   
+    if (messageRow > ([emails count] - 1)) return;
+    
+    Message *message         = [emails objectAtIndex: emailRow];
+    NSString *messageBody   = [[message properties] objectForKey: @"body"];
+    [previewPane setString: messageBody];    
+}
+
 
 
 @end
