@@ -57,7 +57,26 @@ NSMutableArray *check_new;
 	[previewPane setEditable: NO];
 	
 	User = [UserData new];
+	url = [[NSString alloc]init];
 
+}
+
+- (IBAction) openURL: (id) sender
+{
+	
+	NSString *aurl = [self getURL];
+	NSLog(@"aurl%@", aurl);
+	
+}
+
+- (NSString *) getURL {
+
+	return  url;
+}
+
+- (void) setURL:(NSString *)_url {
+	
+	  url = _url;
 }
 
 - (IBAction) loginPanel: (id) sender {
@@ -95,6 +114,7 @@ NSMutableArray *check_new;
 	User.author = @"nil";
 	User.messageSubject = @"nil";
 	User.messageDate = [NSDate	date];
+	User.link = @"";
 }
 
 - (BOOL) connectWithUsername:(NSString *)username password:(NSString *)password  {
@@ -166,7 +186,7 @@ NSMutableArray *check_new;
 
 	NSArray      *messageData  = [[userData objectForKey:@"data"] objectForKey:@"children"];
 	NSArray      *empty  = [[userData objectForKey:@"data"] objectForKey:@"after"];
-
+	NSLog(@"data: %@", messageData);
 	if ([messageData isEqualToArray:check_new]) {
 		NSLog(@"the same");
 		return;
@@ -190,6 +210,9 @@ NSMutableArray *check_new;
 					User.messageBody = [[message objectForKey:@"data"] objectForKey:@"body"];
 					NSLog(@" Subreddit: %@", [[message objectForKey:@"data"] objectForKey:@"subreddit"]);
 					User.subreddit = [[message objectForKey:@"data"] objectForKey:@"subreddit"];
+					User.messageDate = [[message objectForKey:@"data"] objectForKey:@"created_utc"];
+					User.link = [[message objectForKey:@"data"] objectForKey:@"context"];
+
 					NSLog(@"***************************************************\n");
 					
 					[self addEmail:User];
@@ -202,6 +225,11 @@ NSMutableArray *check_new;
 					 User.author = [[message objectForKey:@"data"] objectForKey:@"author"];
 					NSLog(@"* Subject:%@", [[message objectForKey:@"data"] objectForKey:@"subject"]);
 					 User.messageSubject = [[message objectForKey:@"data"] objectForKey:@"subject"];
+					 User.messageDate = [[message objectForKey:@"data"] objectForKey:@"created_utc"];
+					 User.link = [[message objectForKey:@"data"] objectForKey:@"context"];
+
+					 
+
 					NSLog(@"* Message:%@", [[message objectForKey:@"data"] objectForKey:@"body"]);
 					 
 					 User.messageBody =  [[message objectForKey:@"data"] objectForKey:@"body"];
@@ -234,12 +262,14 @@ NSMutableArray *check_new;
 
 - (id) tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)column row:(int)row {
 	NSString *key = [column identifier];
+
 	Message *theMessage = [emails objectAtIndex:row];
 	return [[theMessage properties]objectForKey: key];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
 {
+
 	[previewPane setEditable: NO];
 
     int messageRow = [messagesTable selectedRow];
@@ -250,10 +280,14 @@ NSMutableArray *check_new;
     }
    
     if (messageRow > ([emails count] - 1)) return;
-    
-    Message  *message         = [emails objectAtIndex: messageRow];
+	Message  *message         = [emails objectAtIndex: messageRow];
+
+	NSString *_url     = [[message properties] objectForKey: @"link"];
+	[self setURL:_url];
     NSString *messageBody     = [[message properties] objectForKey: @"body"];
     [previewPane setString: messageBody];    
+
+	
 }
 
 

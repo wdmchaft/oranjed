@@ -14,8 +14,8 @@
 - (id) init {
 	if (self = [super init]) {
 	
-		NSArray *keys   = [NSArray arrayWithObjects:@"address", @"subject", @"date", @"body", nil];
-		NSArray *values = [NSArray arrayWithObjects:@"test", @"test2", [NSDate date], @"test3", nil];
+		NSArray *keys   = [NSArray arrayWithObjects:@"address", @"subject", @"date", @"link", @"body", nil];
+		NSArray *values = [NSArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
 		properties = [[NSMutableDictionary alloc] initWithObjects: values forKeys: keys];
 		
 		
@@ -47,8 +47,11 @@
 
 - (void) setMessageData:(UserData *)user
 {
-	NSArray *keys   = [NSArray arrayWithObjects:@"address", @"subject", @"date", @"body", nil];
-	NSArray *values = [NSArray arrayWithObjects:user.author, user.messageSubject, [NSDate date], user.messageBody, nil];
+	NSArray *keys   = [NSArray arrayWithObjects:@"address", @"subject", @"date", @"link", @"body", nil];
+	NSString *baseurl = @"http://reddit.com";
+	NSString *context = [user.link stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+	NSString *url = [baseurl stringByAppendingString:context];
+	NSArray *values = [NSArray arrayWithObjects:user.author, user.messageSubject, user.messageDate, url, user.messageBody, nil];
 	properties = [[NSMutableDictionary alloc] initWithObjects: values forKeys: keys];
 }
 @end
