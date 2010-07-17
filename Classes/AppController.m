@@ -227,6 +227,8 @@ NSMutableArray *check_new;
 	int count = [emails count];
 
 	[menuItemMessages   setTitle:[NSString stringWithFormat:@"%i Unread", count]];
+	if (count > 0) [statusItem setImage:statusNewImage];
+
 	return count;
 }
 
