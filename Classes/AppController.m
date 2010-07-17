@@ -24,6 +24,7 @@ NSMutableArray *check_new;
 		panelUsernameField = [[NSTextField alloc]init];
 		panelPasswordField = [[NSTextField alloc]init];
 		emails = [[NSMutableArray alloc]init];
+		inboxWindow = [[NSWindow alloc]init];
 
 	}
     return self;
@@ -35,6 +36,7 @@ NSMutableArray *check_new;
 	[loginPanel         release];
 	[panelPasswordField release];
 	[panelUsernameField release];
+	[inboxWindow release];
 	[super dealloc];
 }
 
@@ -55,7 +57,8 @@ NSMutableArray *check_new;
 	[menuItemMessages   setTitle:@"0 Unread"];
 	[menuItemMessages   setHidden:YES];
 	[previewPane setEditable: NO];
-	
+	progressIndicator = progressBar;
+	[progressIndicator setUsesThreadedAnimation:YES];
 	User = [UserData new];
 	url = [[NSString alloc]init];
 
@@ -88,7 +91,10 @@ NSMutableArray *check_new;
 - (IBAction) messagesPanel: (id) sender {
 	[messagesPanel orderFront:sender];
 }
-
+-(IBAction) inboxWindow: (id) sender
+{
+	[inboxWindow orderFront:sender];
+}
 - (BOOL) validateMenuItem:(NSMenuItem *)menuItem {
 	
 	if ([[menuItem title] isEqualToString:@"Login"]) {
@@ -101,6 +107,8 @@ NSMutableArray *check_new;
 			return NO;
 		}
 	}
+
+	
 	return YES;
 }
 
@@ -122,7 +130,7 @@ NSMutableArray *check_new;
 - (BOOL) connectWithUsername:(NSString *)username password:(NSString *)password  {
 	
 	NSLog(@"Connecting");
-	
+	[progressIndicator startAnimation:self];
 	NSMutableURLRequest *request  = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.reddit.com/api/login"]];
 	
 	[request setHTTPMethod:@"POST"];
@@ -134,6 +142,7 @@ NSMutableArray *check_new;
 	NSURLConnection *connection   = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	
 	if (connection) {
+		
 		return YES;
 	} else { 
 		return NO; 
@@ -152,6 +161,12 @@ NSMutableArray *check_new;
 - (void) connection: (NSURLConnection *)connection didReceiveData:(NSData *) data {	
 	
 	User.messageData = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+	if(connection)
+		NSLog(@"connected");
+	else {
+		NSLog(@"not connected");
+	}
+	
 	[self check_logged_in];
 }
 
@@ -164,31 +179,45 @@ NSMutableArray *check_new;
 	if ([[[[loginResponse objectAtIndex:10] objectAtIndex:3] objectAtIndex:0] isEqualToString:@"/" ]) {
 		NSLog(@"you're logged in.");
 		User.logged_in = YES;
+		NSLog(@"here");
+		[progressIndicator stopAnimation:self];
+
 		[menuItemMessages setHidden:NO];
+		[menuItemMessages setEnabled:YES];
+		
 		[self parse];
 	} else if ([[[[loginResponse objectAtIndex:10] objectAtIndex:3] objectAtIndex:0] isEqualToString:@".error.WRONG_PASSWORD.field-passwd"]) {
 		NSLog(@"youre password is incorrect.");
 		User.logged_in = NO;
+		[progressIndicator stopAnimation:self];
 		return;
 	}
 	else {
 		NSLog(@"Something went wrong.");
 		return;
 	}
+	
 
 }
 
+
+
 - (void) parse {
 	
+	
+	
 	SBJSON       *parser       = [[SBJSON alloc] init];
+	
 	NSURLRequest *request      = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.reddit.com/message/unread.json"]];
 	NSData       *response     = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	NSString     *json_string  = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
 	NSDictionary *userData     = [parser objectWithString:json_string error:nil];
-
-	NSArray      *messageData  = [[userData objectForKey:@"data"] objectForKey:@"children"];
-	NSArray      *empty  = [[userData objectForKey:@"data"] objectForKey:@"after"];
-	NSLog(@"data: %@", messageData);
+	
+	
+	NSArray *messageData  = [[userData objectForKey:@"data"] objectForKey:@"children"];
+	NSArray *empty  = [[userData objectForKey:@"data"] objectForKey:@"after"];
+	
+		//NSLog(@"data: %@", messageData);
 	if ([messageData isEqualToArray:check_new]) {
 		NSLog(@"the same");
 		return;
@@ -243,7 +272,7 @@ NSMutableArray *check_new;
 		}
 	}
 	else { NSLog(@"Empty.");}
-
+	
 }	
 
 - (void) addEmail:(UserData *)user {
@@ -257,6 +286,7 @@ NSMutableArray *check_new;
 	int count = [emails count];
 
 	[menuItemMessages   setTitle:[NSString stringWithFormat:@"%i Unread", count]];
+	
 	if (count > 0) [statusItem setImage:statusNewImage];
 
 	return count;

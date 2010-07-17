@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <BWToolkitFramework/BWToolkitFramework.h>
 #import "UserData.h"
+static NSProgressIndicator *progressIndicator;
 
 @interface AppController : NSObject {
 	NSImage              *statusImage;
@@ -32,6 +33,8 @@
 	NSMutableArray *emails;
 	IBOutlet BWHyperlinkButton *linkButton;
 	NSString *url;
+	IBOutlet NSWindow *inboxWindow;
+	IBOutlet NSProgressIndicator *progressBar;
 }
 
 - (void) addEmail:(UserData *)user;
@@ -39,6 +42,7 @@
 -(IBAction) openURL: (id) sender;
 - (NSString *) getURL;
 -(void) setURL:(NSString *)_url;
+-(IBAction) inboxWindow: (id) sender;
 
 - (IBAction) login: (id) sender;
 - (IBAction) check: (id) sender;

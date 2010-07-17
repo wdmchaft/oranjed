@@ -118,7 +118,6 @@
 			children = (
 				71C6B96511E4CA0B0062974F /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -172,6 +171,7 @@
 				71C6B97B11E4CA690062974F /* UserData.m */,
 				7145B73011F0914C00BF05CB /* Message.h */,
 				7145B73111F0914D00BF05CB /* Message.m */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
