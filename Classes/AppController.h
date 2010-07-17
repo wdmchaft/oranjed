@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "UserData.h"
 
 @interface AppController : NSObject {
 	NSImage              *statusImage;
@@ -22,8 +23,16 @@
 	IBOutlet NSTextField *panelUsernameField;
 	IBOutlet NSTextField *panelPasswordField;	
 	
-	IBOutlet NSPanel     *messagesPanel;
+	IBOutlet NSPanel      *messagesPanel;
+	IBOutlet NSScrollView *messageContent;
+
+	IBOutlet NSTableView *messagesTable;
+	IBOutlet NSTextView  *previewPane;
+	NSMutableArray *emails;
 }
+
+- (void) addEmail:(UserData *)user;
+
 
 - (IBAction) login: (id) sender;
 - (IBAction) check: (id) sender;
@@ -31,7 +40,7 @@
 - (IBAction) messagesPanel: (id) sender;
 
 - (BOOL) connectWithUsername:(NSString *)username password:(NSString *)password;
-- (void)parse;
+- (void) parse;
 - (void) check_logged_in;
 
 @end

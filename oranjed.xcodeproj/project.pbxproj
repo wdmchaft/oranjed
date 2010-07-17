@@ -11,6 +11,7 @@
 		710465D511E4D15900A34793 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 710465D311E4D15900A34793 /* icon.png */; };
 		710465D811E4D17000A34793 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 710465D611E4D17000A34793 /* MainMenu.xib */; };
 		710465DB11E4D17900A34793 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 710465D911E4D17900A34793 /* InfoPlist.strings */; };
+		7145B73211F0914D00BF05CB /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 7145B73111F0914D00BF05CB /* Message.m */; };
 		71C6B97C11E4CA690062974F /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C6B96F11E4CA690062974F /* NSObject+SBJSON.m */; };
 		71C6B97D11E4CA690062974F /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C6B97111E4CA690062974F /* NSString+SBJSON.m */; };
 		71C6B97E11E4CA690062974F /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C6B97311E4CA690062974F /* SBJSON.m */; };
@@ -32,6 +33,8 @@
 		710465D311E4D15900A34793 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		710465D711E4D17000A34793 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		710465DA11E4D17900A34793 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7145B73011F0914C00BF05CB /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		7145B73111F0914D00BF05CB /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		71C6B96A11E4CA690062974F /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = Classes/AppController.h; sourceTree = "<group>"; };
 		71C6B96B11E4CA690062974F /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserData.h; path = Classes/UserData.h; sourceTree = "<group>"; };
 		71C6B96D11E4CA690062974F /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				71C6B96C11E4CA690062974F /* JSON */,
 				71C6B97A11E4CA690062974F /* AppController.m */,
 				71C6B97B11E4CA690062974F /* UserData.m */,
+				7145B73011F0914C00BF05CB /* Message.h */,
+				7145B73111F0914D00BF05CB /* Message.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 				71C6B98211E4CA690062974F /* AppController.m in Sources */,
 				71C6B98311E4CA690062974F /* UserData.m in Sources */,
 				71C6B9CF11E4CD4C0062974F /* main.m in Sources */,
+				7145B73211F0914D00BF05CB /* Message.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

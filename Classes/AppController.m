@@ -9,7 +9,7 @@
 #import "AppController.h"
 #import "UserData.h"
 #import "JSON.h"
-
+#import "Message.h"
 
 @implementation AppController
 
@@ -17,11 +17,14 @@ UserData *User;
 
 - (id) init {
     if ( self = [super init] ) {
+
 		menuItemCheck = [[NSMenuItem alloc]init];
 		menuItemLogin = [[NSMenuItem alloc]init];
 		loginPanel = [[NSPanel alloc]init];
 		panelUsernameField = [[NSTextField alloc]init];
 		panelPasswordField = [[NSTextField alloc]init];
+		emails = [[NSMutableArray alloc]init];
+
 	}
     return self;
 }
@@ -51,6 +54,13 @@ UserData *User;
 	[panelPasswordField setStringValue:@"password"];
 	[menuItemMessages   setTitle:@"0 Messages"];
 	[menuItemMessages   setHidden:YES];
+	[previewPane setEditable: NO];
+	
+	User = [UserData new];
+	
+
+	
+	
 
 }
 
@@ -81,13 +91,17 @@ UserData *User;
 	
 	NSLog(@"Logging into reddit...");
 	
-	User = [UserData new];
 	User.password  = [panelPasswordField stringValue];
 	User.username  = [panelUsernameField stringValue];
 	User.logged_in = [self connectWithUsername:User.username password:User.password ];
+	User.messageBody = @"nil";
+	User.messageTitle = @"nil";
+	User.author = @"nil";
+	User.messageSubject = @"nil";
+	User.messageDate = [NSDate	date];
 }
 
-- (BOOL)connectWithUsername:(NSString *)username password:(NSString *)password  {
+- (BOOL) connectWithUsername:(NSString *)username password:(NSString *)password  {
 	
 	NSLog(@"Connecting");
 	
@@ -149,15 +163,15 @@ UserData *User;
 - (void) parse {
 	
 	SBJSON       *parser       = [[SBJSON alloc] init];
-	NSURLRequest *request      = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.reddit.com/message/unread.json?mark=falsex"]];
+	NSURLRequest *request      = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.reddit.com/message/unread.json"]];
 	NSData       *response     = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	NSString     *json_string  = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
 	NSDictionary *userData     = [parser objectWithString:json_string error:nil];
 
 	NSArray      *messageData  = [[userData objectForKey:@"data"] objectForKey:@"children"];
 	NSArray      *empty  = [[userData objectForKey:@"data"] objectForKey:@"after"];
-
-	if (!empty) 
+	NSLog(@"%@", json_string);
+	if (empty) 
 	{
 		for (NSDictionary *message in messageData)
 		{
@@ -167,11 +181,15 @@ UserData *User;
 
 				if ([[message objectForKey:@"data"] objectForKey:@"new"])
 				{
-					NSLog(@"*************** Comment in a reddit ***************");
+					NSLog(@"\n*************** Comment in a reddit ***************");
 					NSLog(@"      From: %@", [[message objectForKey:@"data"] objectForKey:@"author"]);
+					User.author = [[message objectForKey:@"data"] objectForKey:@"author"];
 					NSLog(@"   Message: %@", [[message objectForKey:@"data"] objectForKey:@"body"]);
+					User.messageBody = [[message objectForKey:@"data"] objectForKey:@"body"];
 					NSLog(@" Subreddit: %@", [[message objectForKey:@"data"] objectForKey:@"subreddit"]);
+					User.subreddit = [[message objectForKey:@"data"] objectForKey:@"subreddit"];
 					NSLog(@"***************************************************\n");
+					[self addEmail:User];
 				} else { 
 					NSLog(@"You have no new comments."); 
 				}
@@ -180,10 +198,15 @@ UserData *User;
 			{
 				 if ([[message objectForKey:@"data"] objectForKey:@"new"]) 
 				 {
-					NSLog(@"************* Message in your inbox! **************");
+					NSLog(@"\n************* Message in your inbox! **************");
 					NSLog(@"*    From:%@", [[message objectForKey:@"data"] objectForKey:@"author"]);
+					 User.author = [[message objectForKey:@"data"] objectForKey:@"author"];
 					NSLog(@"* Subject:%@", [[message objectForKey:@"data"] objectForKey:@"subject"]);
+					 User.messageSubject = [[message objectForKey:@"data"] objectForKey:@"subject"];
 					NSLog(@"* Message:%@", [[message objectForKey:@"data"] objectForKey:@"body"]);
+					 
+					 User.messageBody =  [[message objectForKey:@"data"] objectForKey:@"body"];
+					 [self addEmail:User];
 					NSLog(@"***************************************************\n");
 				 } 
 				 else { 
@@ -193,11 +216,30 @@ UserData *User;
 		}
 	}
 	else {
-		NSLog(@"Empty.");
+		//NSLog(@"Empty.");
+		//NSLog(@"%@", User.messageBody);
+		[self addEmail:User];
 
 	}
 
 }	
+
+- (void) addEmail:(UserData *)user {
+	Message *newMessage = [[Message alloc]init];
+	[newMessage initUserData: user];
+	[emails addObject:newMessage];
+	[messagesTable reloadData];
+}
+
+- (int) numberOfRowsInTableView:(NSTableView *)tableView {
+	return [emails count];
+}
+
+- (id) tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)column row:(int)row {
+	NSString *key = [column identifier];
+	Message *theMessage = [emails objectAtIndex:row];
+	return [[theMessage properties]objectForKey: key];
+}
 
 
 @end

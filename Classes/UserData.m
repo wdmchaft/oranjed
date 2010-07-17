@@ -11,7 +11,7 @@
 
 @implementation UserData
 
-@synthesize username, password, messageTitle, messageBody, subreddit, kind, link, messageData, logged_in;
+@synthesize username, password, myArray, author, messageTitle, messageBody, messageSubject, messageDate, subreddit, kind, link, messageData, logged_in;
 
 - (id) init {
     if ( self = [super init] ) {
@@ -23,9 +23,13 @@
 		kind         = [[NSString alloc]init];
 		link         = [[NSString alloc]init];
 		messageData  = [[NSString alloc]init];
-
-		logged_in    = NO;
-
+		author		 = [[NSString alloc]init];
+		messageSubject = [[NSString alloc]init];
+		messageDate	   = [[NSDate alloc]init];
+		logged_in      = NO;
+		myArray = [[NSMutableArray alloc] init];
+	
+		
 
     }
     return self;
@@ -40,6 +44,10 @@
 	[kind         release];
 	[link         release];
 	[messageData  release];
+	[author		  release];
+	[messageSubject	release];
+	[messageDate	release];
+	[myArray release];
 	[super        dealloc];
 }
 

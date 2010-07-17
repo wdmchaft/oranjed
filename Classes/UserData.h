@@ -18,7 +18,10 @@
 	NSString *kind;
 	NSString *link;
 	NSString *messageData;
+	NSString *messageSubject;
+	NSDate   *messageDate;
 	BOOL logged_in;
+	NSMutableArray *myArray;
 
 }
 
@@ -31,7 +34,10 @@
 @property (nonatomic, retain) NSString *kind;
 @property (nonatomic, retain) NSString *link;
 @property (nonatomic, retain) NSString *messageData;
-
+@property (nonatomic, retain) NSString *author;
+@property (nonatomic, retain) NSString *messageSubject;
+@property (nonatomic, retain) NSDate *messageDate;
+@property (nonatomic, retain) NSMutableArray *myArray;
 @property (nonatomic) BOOL logged_in;
 
 @end
