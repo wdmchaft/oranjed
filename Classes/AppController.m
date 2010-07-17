@@ -66,6 +66,8 @@ NSMutableArray *check_new;
 	
 	NSString *aurl = [self getURL];
 	NSLog(@"aurl%@", aurl);
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:aurl]];
+
 	
 }
 
