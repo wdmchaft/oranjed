@@ -12,8 +12,8 @@
 #import "Message.h"
 
 @implementation AppController
-
 UserData *User;
+
 NSMutableArray *check_new;
 - (id) init {
     if ( self = [super init] ) {
@@ -25,6 +25,7 @@ NSMutableArray *check_new;
 		panelPasswordField = [[NSTextField alloc]init];
 		emails = [[NSMutableArray alloc]init];
 		inboxWindow = [[NSWindow alloc]init];
+		User = [UserData new];
 
 	}
     return self;
@@ -59,7 +60,6 @@ NSMutableArray *check_new;
 	[previewPane setEditable: NO];
 	progressIndicator = progressBar;
 	[progressIndicator setUsesThreadedAnimation:YES];
-	User = [UserData new];
 	url = [[NSString alloc]init];
 
 }
@@ -115,7 +115,7 @@ NSMutableArray *check_new;
 - (IBAction) login: (id) sender {
 	
 	NSLog(@"Logging into reddit...");
-	
+
 	User.password  = [panelPasswordField stringValue];
 	User.username  = [panelUsernameField stringValue];
 	User.logged_in = [self connectWithUsername:User.username password:User.password ];
@@ -123,7 +123,7 @@ NSMutableArray *check_new;
 	User.messageTitle = @"nil";
 	User.author = @"nil";
 	User.messageSubject = @"nil";
-	User.messageDate = [NSDate	date];
+	User.messageDate = @"nil";
 	User.link = @"";
 }
 
@@ -151,7 +151,7 @@ NSMutableArray *check_new;
 
 - (IBAction) check: (id) sender {
 	NSLog(@"checking reddit...");
-
+		
 	if (User.logged_in) {
 		NSLog(@"You're logged in, so you can check!");
 		[self parse];
@@ -204,8 +204,8 @@ NSMutableArray *check_new;
 
 - (void) parse {
 	
-	
-	
+	[emails removeAllObjects];
+
 	SBJSON       *parser       = [[SBJSON alloc] init];
 	
 	NSURLRequest *request      = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.reddit.com/message/unread.json"]];
@@ -217,7 +217,7 @@ NSMutableArray *check_new;
 	NSArray *messageData  = [[userData objectForKey:@"data"] objectForKey:@"children"];
 	NSArray *empty  = [[userData objectForKey:@"data"] objectForKey:@"after"];
 	
-		//NSLog(@"data: %@", messageData);
+		NSLog(@"data: %@", messageData);
 	if ([messageData isEqualToArray:check_new]) {
 		NSLog(@"the same");
 		return;
@@ -241,9 +241,11 @@ NSMutableArray *check_new;
 					User.messageBody = [[message objectForKey:@"data"] objectForKey:@"body"];
 					NSLog(@" Subreddit: %@", [[message objectForKey:@"data"] objectForKey:@"subreddit"]);
 					User.subreddit = [[message objectForKey:@"data"] objectForKey:@"subreddit"];
-					User.messageDate = [[message objectForKey:@"data"] objectForKey:@"created_utc"];
+					NSString *messageDate = [[message objectForKey:@"data"] objectForKey:@"created_utc"];					 
+					User.messageDate = [self UTCConvertDateAndFormat:messageDate];
+					NSLog(@"Date: %@", User.messageDate);
 					User.link = [[message objectForKey:@"data"] objectForKey:@"context"];
-
+					User.messageSubject = [[message objectForKey:@"data"] objectForKey:@"subject"];
 					NSLog(@"***************************************************\n");
 					
 					[self addEmail:User];
@@ -256,10 +258,12 @@ NSMutableArray *check_new;
 					 User.author = [[message objectForKey:@"data"] objectForKey:@"author"];
 					NSLog(@"* Subject:%@", [[message objectForKey:@"data"] objectForKey:@"subject"]);
 					 User.messageSubject = [[message objectForKey:@"data"] objectForKey:@"subject"];
-					 User.messageDate = [[message objectForKey:@"data"] objectForKey:@"created_utc"];
-					 User.link = [[message objectForKey:@"data"] objectForKey:@"context"];
-
 					 
+					 NSString *messageDate = [[message objectForKey:@"data"] objectForKey:@"created_utc"];					 
+					 User.messageDate = [self UTCConvertDateAndFormat:messageDate];
+					 
+					
+					 User.link = [[message objectForKey:@"data"] objectForKey:@"context"];
 
 					NSLog(@"* Message:%@", [[message objectForKey:@"data"] objectForKey:@"body"]);
 					 
@@ -275,7 +279,20 @@ NSMutableArray *check_new;
 	
 }	
 
+-(NSString *)UTCConvertDateAndFormat:(NSString *)messageDate {    
+	
+	int messageDateToInt = [messageDate intValue];
+	NSTimeInterval unixDate = messageDateToInt;
+	NSDate *date = [NSDate dateWithTimeIntervalSince1970:unixDate];
+	NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+	[dateFormat setDateFormat:@"MM-dd-yyyy"];
+	
+	return [dateFormat stringFromDate:date];
+}
+
 - (void) addEmail:(UserData *)user {
+	
+	[messagesTable reloadData];
 	Message *newMessage = [[Message alloc]init];
 	[newMessage initUserData: user];
 	[emails addObject:newMessage];

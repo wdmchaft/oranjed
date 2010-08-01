@@ -25,7 +25,7 @@
 		messageData  = [[NSString alloc]init];
 		author		 = [[NSString alloc]init];
 		messageSubject = [[NSString alloc]init];
-		messageDate	   = [[NSDate alloc]init];
+		messageDate	   = [[NSString alloc]init];
 		logged_in      = NO;
 		myArray = [[NSMutableArray alloc] init];
 	

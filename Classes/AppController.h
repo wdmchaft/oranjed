@@ -38,6 +38,7 @@ static NSProgressIndicator *progressIndicator;
 }
 
 - (void) addEmail:(UserData *)user;
+-(NSString *)UTCConvertDateAndFormat:(NSString *)messageDate;
 
 -(IBAction) openURL: (id) sender;
 - (NSString *) getURL;

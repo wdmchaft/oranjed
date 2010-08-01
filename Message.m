@@ -47,6 +47,8 @@
 
 - (void) setMessageData:(UserData *)user
 {
+	
+	
 	NSArray *keys   = [NSArray arrayWithObjects:@"address", @"subject", @"date", @"link", @"body", nil];
 	NSString *baseurl = @"http://reddit.com";
 	NSString *context = [user.link stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
